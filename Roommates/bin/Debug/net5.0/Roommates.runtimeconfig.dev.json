@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Laurel\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Laurel\\.nuget\\packages"
+    ]
+  }
+}
