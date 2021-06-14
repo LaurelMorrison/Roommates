@@ -12,7 +12,7 @@ namespace Roommates.Repositories
     {
         public RoommateRepository(string connectionString) : base(connectionString) { }
 
-        public Roommate GetById(int id)
+        public Roommate GetByRoommateId(int id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -21,7 +21,8 @@ namespace Roommates.Repositories
                 {
                     cmd.CommandText = "SELECT rm.FirstName, rm.RentPortion, r.Name  " +
                         "FROM Roommate rm " +
-                        "Join Room r on rm.RoomId = r.id";
+                        "Join Room r on rm.RoomId = r.id " +
+                        "WHERE rm.id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
