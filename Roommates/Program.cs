@@ -65,22 +65,45 @@ namespace Roommates
                         Console.ReadKey();
                         break;
 
-                        case ("Show all chores"):
+                    case ("Show all chores"):
                         List<Chore> chores = choreRepo.GetAll();
                         foreach (Chore c in chores)
                         {
-                            Console.WriteLine($"{c.Name} has and Id of {c.Id}");
-                            Console.Write("Press any key to continue");
+                            Console.WriteLine($"{c.Name} has an Id of {c.Id}");
+                        }
+                            Console.WriteLine("Press any key to continue");
                             Console.ReadKey();
                             break;
-                        }
-                          case ("Search for a Chore"):
-                        // Do stuff
-                         break;
-                        case ("Add a Chore"):
-                        // Do stuff
+                  
+
+                    case ("Search for a Chore"):
+                        Console.Write("Chore Id: ");
+                        int choreId = int.Parse(Console.ReadLine());
+
+                        Chore chore = choreRepo.GetById(choreId);
+
+                        Console.WriteLine($"{chore.Id} - {chore.Name}");
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
                         break;
-                            case ("Exit"):
+
+                    case ("Add a Chore"):
+                        Console.Write("Chore name: ");
+                        string choreName = Console.ReadLine();
+
+                        Chore choreToAdd = new Chore()
+                        {
+                            Name = choreName                        
+                            };
+
+                        choreRepo.Insert(choreToAdd);
+
+                        Console.WriteLine($"{choreToAdd.Name} has been added and assigned an Id of {choreToAdd.Id}");
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
+                        break;
+
+                   case ("Exit"):
                         runProgram = false;
                         break;
                 }
@@ -97,6 +120,9 @@ namespace Roommates
                 "Show all rooms",
                 "Search for room",
                 "Add a room",
+                "Show all chores",
+                "Search for a Chore",
+                "Add a Chore",
                 "Exit"
             };
 
